@@ -2,6 +2,7 @@ package com.example.QuizMicroservice.Controller;
 
 
 import com.example.QuizMicroservice.Model.QuestionWrapper;
+import com.example.QuizMicroservice.Model.QuizDto;
 import com.example.QuizMicroservice.Model.Response;
 import com.example.QuizMicroservice.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class QuizController {
     QuizService quizService;
 
     @PostMapping("create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category , @RequestParam int numQ , @RequestParam String title){
-        return quizService.createQuiz(category,numQ,title);
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto){
+        return quizService.createQuiz(quizDto.getCategoryName(),quizDto.getNumQuestions(),quizDto.getTitle());
     }
 
     @GetMapping("get/{id}")
